@@ -14,8 +14,13 @@ public class Main {
                            "D: T flip-flop\n");
         char type = sc.next().toUpperCase().charAt(0);
 
+
         switch (type) {
             case 'A':
+                System.out.println("\n---------------------------------------------------");
+                System.out.println("'RS flip-flop'");
+                System.out.println("---------------------------------------------------");
+                System.out.println("\nPlease provide all necessary inputs (Q, S, R): ");
                 System.out.println("\nPls provide Q input: ");
                 int RSQ = sc.nextInt();
                 System.out.println("Pls provide S input: ");
@@ -26,13 +31,17 @@ public class Main {
                 int RSAnswer = RS(RSQ,S,R);
 
                 if (S == 1 && R == 1) {
-                    System.out.println("The value is indeterminate.");
+                    System.out.println("\nThe value is indeterminate.");
                 }
-
                 System.out.println("\nthe output is: " + RSAnswer);
-
+                System.out.println("\n---------------------------------------------------\n");
                 break;
+
             case 'B':
+                System.out.println("\n---------------------------------------------------");
+                System.out.println("'D flip-flop'");
+                System.out.println("---------------------------------------------------");
+                System.out.println("\nPlease provide all necessary inputs (Q and D): ");
                 System.out.println("\nPls provide Q input: ");
                 int DQ = sc.nextInt();
                 System.out.println("Pls provide D input: ");
@@ -41,8 +50,14 @@ public class Main {
                 int DAnswer = D(DQ,D);
 
                 System.out.println("\nthe output is: " + DAnswer);
+                System.out.println("\n---------------------------------------------------\n");
                 break;
+
             case 'C':
+                System.out.println("\n---------------------------------------------------");
+                System.out.println("'JK flip-flop'");
+                System.out.println("----------------------------------------------------");
+                System.out.println("\nPlease provide all necessary inputs (Q, J, K): ");
                 System.out.println("\nPls provide Q input: ");
                 int JKQ = sc.nextInt();
                 System.out.println("Pls provide J input: ");
@@ -53,8 +68,14 @@ public class Main {
                 int JKAnswer = JK(JKQ, J, K);
 
                 System.out.println("\nthe output is: " + JKAnswer);
+                System.out.println("\n------------------------------------------------------\n");
                 break;
+
             case 'D':
+                System.out.println("\n---------------------------------------------------");
+                System.out.println("'T flip-flop'");
+                System.out.println("------------------------------------------------------");
+                System.out.println("\nPlease provide all necessary inputs (Q and T): ");
                 System.out.println("\nPls provide Q input: ");
                 int TQ = sc.nextInt();
                 System.out.println("Pls provide T input: ");
@@ -63,6 +84,7 @@ public class Main {
                 int TAnswer = T(TQ,T);
 
                 System.out.println("\nthe output is: " + TAnswer);
+                System.out.println("\n------------------------------------------------------\n");
                 break;
         }
     }
