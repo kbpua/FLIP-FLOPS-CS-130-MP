@@ -65,6 +65,14 @@ public class RSFF {
             S = 0;
             R = 0;
             System.out.println("\nInputs reset to S=0, R=0");
+            // Display reset state table
+            System.out.println("┌───────┬───────────────┐");
+            System.out.println("│ Input │    Output     │");
+            System.out.println("├───┬───┼───────┬───────┤");
+            System.out.println("│ R │ S │ Q(t)  │ Q(t+1)│");
+            System.out.println("├───┼───┼───────┼───────┤");
+            System.out.printf("│ %d │ %d │   %d   │   %d   │\n", R, S, Q, Q_next);
+            System.out.println("└───┴───┴───────┴───────┘");
 
             // Continue prompt
             System.out.print("\nContinue? (Y/N): ");

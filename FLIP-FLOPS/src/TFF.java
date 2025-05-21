@@ -54,6 +54,14 @@ public class TFF {
             Thread.sleep(2000);
             T = 0;
             System.out.println("\nInput has been reset to T = 0");
+            // Display reset state table
+            System.out.println("┌─────────┬────────────────────┐");
+            System.out.println("│  Input  │       Output       │");
+            System.out.println("├───┬─────┼──────────┬─────────┤");
+            System.out.println("│ T │ Q(t)│       Q(t+1)       │");
+            System.out.println("├───┼─────┼──────────┴─────────┤");
+            System.out.printf("│ %d │  %d  │          %d         │\n", T, Q, Q_next);
+            System.out.println("└───┴─────┴────────────────────┘");
             System.out.println("\n---------------------------------------------------");
 
             // Ask to continue

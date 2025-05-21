@@ -59,6 +59,14 @@ public class JKFF {
             Thread.sleep(2000);
             J = 0; K = 0;
             System.out.println("\nInputs have been reset to J = 0, K = 0");
+            // Display reset state table
+            System.out.println("┌───────┬───────────────┐");
+            System.out.println("│ Input │    Output     │");
+            System.out.println("├───┬───┼───────┬───────┤");
+            System.out.println("│ J │ K │ Q(t)  │ Q(t+1)│");
+            System.out.println("├───┼───┼───────┼───────┤");
+            System.out.printf("│ %d │ %d │   %d   │   %d   │\n", J, K, Q, Q_next);
+            System.out.println("└───┴───┴───────┴───────┘");
             System.out.println("\n---------------------------------------------------");
 
             // Continue prompt

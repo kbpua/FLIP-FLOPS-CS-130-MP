@@ -48,6 +48,14 @@ public class DFF {
             Thread.sleep(2000);
             D = 0;
             System.out.println("\nInput has been reset to D = 0");
+            // Display reset state table
+            System.out.println("┌─────────┬────────────────────┐");
+            System.out.println("│  Input  │       Output       │");
+            System.out.println("├───┬─────┼──────────┬─────────┤");
+            System.out.println("│ D │ Q(t)│       Q(t+1)       │");
+            System.out.println("├───┼─────┼──────────┴─────────┤");
+            System.out.printf("│ %d │  %d  │          %d         │\n", D, Q, Q_next);
+            System.out.println("└───┴─────┴────────────────────┘");
             System.out.println("\n---------------------------------------------------");
 
             System.out.print("Continue? (Y/N): ");
