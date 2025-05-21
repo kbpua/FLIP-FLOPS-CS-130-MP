@@ -15,7 +15,7 @@ public class RSFF {
         do {
             // Show previous state for reference
             if (prevS != null && prevR != null && prevQ != null && prevQnext != null) {
-                System.out.println("\nPrevious Cycle:");
+                System.out.println("\nPrevious Cycle: RS Flip-Flop");
                 System.out.println("┌───────┬───────────────┐");
                 System.out.println("│ Input │    Output     │");
                 System.out.println("├───┬───┼───────┬───────┤");
@@ -42,7 +42,7 @@ public class RSFF {
             int Q_next = RS(Q, S, R);
 
             // Display current table
-            System.out.println("\nCurrent Cycle:");
+            System.out.println("\nCurrent Cycle: RS Flip-Flop");
             System.out.println("┌───────┬───────────────┐");
             System.out.println("│ Input │    Output     │");
             System.out.println("├───┬───┼───────┬───────┤");

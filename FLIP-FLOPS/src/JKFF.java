@@ -16,7 +16,7 @@ public class JKFF {
         do {
             // Display previous cycle if available
             if (prevJ != null && prevK != null && prevQ != null && prevQnext != null) {
-                System.out.println("\nPrevious Cycle:");
+                System.out.println("\nPrevious Cycle: JK Flip Flop");
                 System.out.println("┌───────┬───────────────┐");
                 System.out.println("│ Input │    Output     │");
                 System.out.println("├───┬───┼───────┬───────┤");
@@ -37,7 +37,7 @@ public class JKFF {
             int Q_next = JK(Q, J, K);
 
             // Display current output
-            System.out.println("\nCurrent Cycle:");
+            System.out.println("\nCurrent Cycle: JK Flip Flop");
             System.out.println("┌───────┬───────────────┐");
             System.out.println("│ Input │    Output     │");
             System.out.println("├───┬───┼───────┬───────┤");

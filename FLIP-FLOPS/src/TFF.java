@@ -5,7 +5,6 @@ public class TFF {
         boolean exit = false;
         int T = 0;
 
-        // Previous input/output storage
         Integer prevT = null, prevQ = null, prevQnext = null;
 
         System.out.println("\n╔══════════════════════════════╗");
@@ -15,18 +14,18 @@ public class TFF {
         do {
             // Display previous cycle if available
             if (prevT != null && prevQ != null && prevQnext != null) {
-                System.out.println("\nPrevious Cycle:");
-                System.out.println("┌───────┬───────────────┐");
-                System.out.println("│ Input │    Output     │");
-                System.out.println("├───┬───────┬───────┤");
-                System.out.println("│ T │ Q(t)  │ Q(t+1)│");
-                System.out.println("├───┼───────┼───────┤");
-                System.out.printf("│ %d │   %d   │   %d   │\n", prevT, prevQ, prevQnext);
-                System.out.println("└───┴───────┴───────┘");
+                System.out.println("\nPrevious Cycle: T Flip-Flop");
+                System.out.println("┌─────────┬────────────────────┐");
+                System.out.println("│  Input  │       Output       │");
+                System.out.println("├───┬─────┼──────────┬─────────┤");
+                System.out.println("│ T │ Q(t)│       Q(t+1)       │");
+                System.out.println("├───┼─────┼──────────┴─────────┤");
+                System.out.printf("│ %d │  %d  │          %d         │\n", prevT, prevQ, prevQnext);
+                System.out.println("└───┴─────┴────────────────────┘");
             }
 
             // Get input
-            System.out.println("\nCurrent state: Q = " + Q);
+            System.out.println("\nCurrent State: Q(t) = " + Q);
             System.out.print("Please provide T input (0 or 1): ");
             T = sc.nextInt();
 
@@ -34,16 +33,16 @@ public class TFF {
             int Q_next = T == 1 ? 1 - Q : Q;
 
             // Display current cycle
-            System.out.println("\nCurrent Cycle:");
-            System.out.println("┌───────┬───────────────┐");
-            System.out.println("│ Input │    Output     │");
-            System.out.println("├───┬───────┬───────┤");
-            System.out.println("│ T │ Q(t)  │ Q(t+1)│");
-            System.out.println("├───┼───────┼───────┤");
-            System.out.printf("│ %d │   %d   │   %d   │\n", T, Q, Q_next);
-            System.out.println("└───┴───────┴───────┘");
+            System.out.println("\nCurrent Cycle: T Flip-Flop");
+            System.out.println("┌─────────┬────────────────────┐");
+            System.out.println("│  Input  │       Output       │");
+            System.out.println("├───┬─────┼──────────┬─────────┤");
+            System.out.println("│ T │ Q(t)│       Q(t+1)       │");
+            System.out.println("├───┼─────┼──────────┴─────────┤");
+            System.out.printf("│ %d │  %d  │          %d         │\n", T, Q, Q_next);
+            System.out.println("└───┴─────┴────────────────────┘");
 
-            // Store for next cycle
+            // Store previous state
             prevT = T;
             prevQ = Q;
             prevQnext = Q_next;
@@ -51,13 +50,13 @@ public class TFF {
             // Update state
             Q = Q_next;
 
-            // Reset and pause
+            // Delay and reset
             Thread.sleep(2000);
             T = 0;
-            System.out.println("\nInput reset to T=0");
+            System.out.println("\nInput has been reset to T = 0");
             System.out.println("\n---------------------------------------------------");
 
-            // Continue prompt
+            // Ask to continue
             System.out.print("Continue? (Y/N): ");
             char response = sc.next().toUpperCase().charAt(0);
             exit = (response == 'N');

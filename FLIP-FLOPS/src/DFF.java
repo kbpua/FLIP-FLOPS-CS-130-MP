@@ -14,30 +14,30 @@ public class DFF {
 
         do {
             if (prevD != null && prevQ != null && prevQnext != null) {
-                System.out.println("\nPrevious Cycle:");
-                System.out.println("┌───────┬───────────────┐");
-                System.out.println("│ Input │    Output     │");
-                System.out.println("├───┼───────┬───────┤");
-                System.out.println("│ D │ Q(t)  │ Q(t+1)│");
-                System.out.println("├───┼───────┼───────┤");
-                System.out.printf("│ %d │   %d   │   %d   │\n", prevD, prevQ, prevQnext);
-                System.out.println("└───┴───────┴───────┘");
+                System.out.println("\nPrevious Cycle: D Flip-Flop");
+                System.out.println("┌─────────┬────────────────────┐");
+                System.out.println("│  Input  │       Output       │");
+                System.out.println("├───┬─────┼──────────┬─────────┤");
+                System.out.println("│ D │ Q(t)│       Q(t+1)       │");
+                System.out.println("├───┼─────┼──────────┴─────────┤");
+                System.out.printf("│ %d │  %d  │          %d         │\n", prevD, prevQ, prevQnext);
+                System.out.println("└───┴─────┴────────────────────┘");
             }
 
-            System.out.println("\nCurrent State: Q = " + Q);
+            System.out.println("\nCurrent State: Q(t) = " + Q);
             System.out.print("Please provide D input (0 or 1): ");
             D = sc.nextInt();
 
-            int Q_next = D; // simplified logic
+            int Q_next = D; // D flip-flop: output follows input
 
-            System.out.println("\nCurrent Cycle:");
-            System.out.println("┌───────┬───────────────┐");
-            System.out.println("│ Input │    Output     │");
-            System.out.println("├───┼───────┬───────┤");
-            System.out.println("│ D │ Q(t)  │ Q(t+1)│");
-            System.out.println("├───┼───────┼───────┤");
-            System.out.printf("│ %d │   %d   │   %d   │\n", D, Q, Q_next);
-            System.out.println("└───┴───────┴───────┘");
+            System.out.println("\nCurrent Cycle: D Flip-Flop");
+            System.out.println("┌─────────┬────────────────────┐");
+            System.out.println("│  Input  │       Output       │");
+            System.out.println("├───┬─────┼──────────┬─────────┤");
+            System.out.println("│ D │ Q(t)│       Q(t+1)       │");
+            System.out.println("├───┼─────┼──────────┴─────────┤");
+            System.out.printf("│ %d │  %d  │          %d         │\n", D, Q, Q_next);
+            System.out.println("└───┴─────┴────────────────────┘");
 
             prevD = D;
             prevQ = Q;
