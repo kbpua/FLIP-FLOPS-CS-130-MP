@@ -1,210 +1,54 @@
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws InterruptedException {
+        RSFF rsFlipFlop = new RSFF();
+        DFF dFlipFlop = new DFF();
+        JKFF jkFlipFlop = new JKFF();
+        TFF tFlipFlop = new TFF();
+        int Q = 0;
+        boolean exit = false;
         Scanner sc = new Scanner(System.in);
 
-        System.out.println();
-        System.out.println("Please choose flip-flop type:\n\n" +
-                           "A: RS flip-flop\n" +
-                           "B: D flip-flop\n" +
-                           "C: JK flip-flop\n" +
-                           "D: T flip-flop\n");
-        char type = sc.next().toUpperCase().charAt(0);
+        while (!exit) {
+            System.out.println();
+            System.out.println("╔════════════════════════════════════════════╗");
+            System.out.println("║               Flip-Flop Menu               ║");
+            System.out.println("╠════════════════════════════════════════════╣");
+            System.out.println("║ A: RS flip-flop                            ║");
+            System.out.println("║ B: D flip-flop                             ║");
+            System.out.println("║ C: JK flip-flop                            ║");
+            System.out.println("║ D: T flip-flop                             ║");
+            System.out.println("║ E: Exit application                        ║");
+            System.out.println("╚════════════════════════════════════════════╝");
+            System.out.print("Enter your choice: ");
 
+            char type = sc.next().toUpperCase().charAt(0);
 
-        switch (type) {
-            case 'A':
-                System.out.println("\n---------------------------------------------------");
-                System.out.println("'RS flip-flop'");
-                System.out.println("---------------------------------------------------");
-                System.out.println("\nPlease provide all necessary inputs (Q, S, R): ");
-                System.out.println("\nPls provide Q input: ");
-                int RSQ = sc.nextInt();
-                System.out.println("Pls provide S input: ");
-                int S = sc.nextInt();
-                System.out.println("Pls provide R input: ");
-                int R = sc.nextInt();
-
-                int RSAnswer = RS(RSQ,S,R);
-
-                if (S == 1 && R == 1) {
-                    System.out.println("\nThe value is indeterminate.");
-                }
-                System.out.println("\nthe output is: " + RSAnswer);
-                System.out.println("\n---------------------------------------------------\n");
-                break;
-
-            case 'B':
-                System.out.println("\n---------------------------------------------------");
-                System.out.println("'D flip-flop'");
-                System.out.println("---------------------------------------------------");
-                System.out.println("\nPlease provide all necessary inputs (Q and D): ");
-                System.out.println("\nPls provide Q input: ");
-                int DQ = sc.nextInt();
-                System.out.println("Pls provide D input: ");
-                int D = sc.nextInt();
-
-                int DAnswer = D(DQ,D);
-
-                System.out.println("\nthe output is: " + DAnswer);
-                System.out.println("\n---------------------------------------------------\n");
-                break;
-
-            case 'C':
-                System.out.println("\n---------------------------------------------------");
-                System.out.println("'JK flip-flop'");
-                System.out.println("----------------------------------------------------");
-                System.out.println("\nPlease provide all necessary inputs (Q, J, K): ");
-                System.out.println("\nPls provide Q input: ");
-                int JKQ = sc.nextInt();
-                System.out.println("Pls provide J input: ");
-                int J = sc.nextInt();
-                System.out.println("Pls provide K input: ");
-                int K = sc.nextInt();
-
-                int JKAnswer = JK(JKQ, J, K);
-
-                System.out.println("\nthe output is: " + JKAnswer);
-                System.out.println("\n------------------------------------------------------\n");
-                break;
-
-            case 'D':
-                System.out.println("\n---------------------------------------------------");
-                System.out.println("'T flip-flop'");
-                System.out.println("------------------------------------------------------");
-                System.out.println("\nPlease provide all necessary inputs (Q and T): ");
-                System.out.println("\nPls provide Q input: ");
-                int TQ = sc.nextInt();
-                System.out.println("Pls provide T input: ");
-                int T = sc.nextInt();
-
-                int TAnswer = T(TQ,T);
-
-                System.out.println("\nthe output is: " + TAnswer);
-                System.out.println("\n------------------------------------------------------\n");
-                break;
+            switch (type) {
+                case 'A':
+                    Q = rsFlipFlop.inputRS(Q, sc);
+                    Q = 0;
+                    break;
+                case 'B':
+                    Q = dFlipFlop.inputD(Q, sc);
+                    Q = 0;
+                    break;
+                case 'C':
+                    Q = jkFlipFlop.inputJK(Q, sc);
+                    Q = 0;
+                    break;
+                case 'D':
+                    Q = tFlipFlop.inputT(Q, sc);
+                    Q = 0;
+                    break;
+                case 'E':
+                    System.out.println("Thank you for using our Flip-Flop Simulator!");
+                    exit = true;
+                    break;
+                default:
+                    System.out.println("Invalid option! Please choose A, B, C, D, or E.");
+            }
         }
     }
-    public static int RS(int RSQ, int S, int R) {
-
-        // input is in QSR order
-        // RS flip-flop that has set state 10, reset state 01, and memory state 00
-
-        int RSNS = 0;
-
-        // RESET
-
-        if (S == 0 && R == 1) {
-            RSNS = 0;
-            return RSNS;
-        }
-
-        // SET
-
-        else if (S == 1 && R == 0) {
-            RSNS = 1;
-            return RSNS;
-        }
-
-        // MEMORY STATE
-
-        else if (S == 0 && R == 0) {
-            RSNS = RSQ;
-        }
-
-        return RSNS;
-    }
-
-    public static int D(int DQ, int D) {
-
-        // input is in QD order
-
-        int DNS = 0;
-
-        // RESET
-
-        if (D == 0) {
-            DNS = 0;
-        }
-
-        // SET
-
-        if (D == 1) {
-            DNS = 1;
-        }
-        return DNS;
-    }
-
-    public static int JK(int JKQ, int J, int K) {
-
-        // input is in QJK order
-        // RS flip-flop that has set state 10, reset state 01, and memory state 00, and 11 for compliment
-
-        int JKNS = 0;
-
-        // RESET
-
-        if (J == 0 && K == 1) {
-            JKNS = 0;
-            return JKNS;
-        }
-
-        // SET
-
-        else if (J == 1 && K == 0) {
-            JKNS = 1;
-            return JKNS;
-        }
-
-        // MEMORY STATE
-
-        else if (J == 0 && K == 0) {
-            JKNS = JKQ;
-        }
-
-        // INDETERMINATE case Q = 0
-
-        else if (JKQ == 0 && J == 1 && K == 1) {
-            JKNS = 1;
-        }
-
-        // INDETERMINATE case Q = 1
-
-        else if (JKQ == 1 && J == 1 && K == 1) {
-            JKNS = 0;
-        }
-
-        return JKNS;
-    }
-
-    public static int T(int TQ, int T) {
-
-        // input is in QT order
-
-        int TNS = 0;
-
-        // MEMORY STATE
-
-        if (T == 0) {
-            TNS = TQ;
-        }
-
-        // COMPLIMENT case Q = 0
-
-        else if (TQ == 0 && T == 1) {
-            TNS = 1;
-        }
-
-        // COMPLIMENT case Q = 1
-
-        else if (TQ == 1 && T == 1) {
-            TNS = 0;
-        }
-        return TNS;
-    }
-
-
 }
