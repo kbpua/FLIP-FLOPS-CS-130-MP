@@ -61,7 +61,7 @@ public class RSFF {
                 // Get inputs
                 System.out.println("\nCurrent State: Q(t) = " + Q);
                 System.out.print("Enter S (0 or 1): ");
-                String sInput = sc.next().trim();
+                String sInput = sc.nextLine().trim();
                 if (sInput.isEmpty()) {
                     System.out.println("Error: Input cannot be empty");
                     continue;
@@ -77,7 +77,7 @@ public class RSFF {
                 S = sInput.charAt(0) - '0';
 
                 System.out.print("Enter R (0 or 1): ");
-                String rInput = sc.next().trim();
+                String rInput = sc.nextLine().trim();
                 if (rInput.isEmpty()) {
                     System.out.println("Error: Input cannot be empty");
                     continue;
@@ -138,7 +138,7 @@ public class RSFF {
                 boolean validResponse = false;
                 while (!validResponse) {
                     System.out.print("\nContinue? (Y/N): ");
-                    String response = sc.next().trim().toUpperCase();
+                    String response = sc.nextLine().trim().toUpperCase();
                     if (response.isEmpty()) {
                         System.out.println("Error: Input cannot be empty");
                         continue;

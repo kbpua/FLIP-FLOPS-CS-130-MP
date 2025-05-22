@@ -21,11 +21,11 @@ public class Main {
         DFF dFlipFlop = new DFF();
         JKFF jkFlipFlop = new JKFF();
         TFF tFlipFlop = new TFF();
-        
+
         // Initialize state variables
-        int Q = 0;  // Initial state of flip-flops
-        boolean exit = false;  // Control variable for program exit
-        Scanner sc = null;  // Scanner for user input
+        int Q = 0; // Initial state of flip-flops
+        boolean exit = false; // Control variable for program exit
+        Scanner sc = null; // Scanner for user input
 
         try {
             sc = new Scanner(System.in);
@@ -66,39 +66,39 @@ public class Main {
 
                     // Handle user selection
                     switch (type) {
-                        case 'A':  // RS Flip-Flop
+                        case 'A': // RS Flip-Flop
                             try {
                                 Q = rsFlipFlop.inputRS(Q, sc);
-                                Q = 0;  // Reset state after operation
+                                Q = 0; // Reset state after operation
                             } catch (Exception e) {
                                 System.out.println("Error in RS flip-flop operation: " + e.getMessage());
                             }
                             break;
-                        case 'B':  // D Flip-Flop
+                        case 'B': // D Flip-Flop
                             try {
                                 Q = dFlipFlop.inputD(Q, sc);
-                                Q = 0;  // Reset state after operation
+                                Q = 0; // Reset state after operation
                             } catch (Exception e) {
                                 System.out.println("Error in D flip-flop operation: " + e.getMessage());
                             }
                             break;
-                        case 'C':  // JK Flip-Flop
+                        case 'C': // JK Flip-Flop
                             try {
                                 Q = jkFlipFlop.inputJK(Q, sc);
-                                Q = 0;  // Reset state after operation
+                                Q = 0; // Reset state after operation
                             } catch (Exception e) {
                                 System.out.println("Error in JK flip-flop operation: " + e.getMessage());
                             }
                             break;
-                        case 'D':  // T Flip-Flop
+                        case 'D': // T Flip-Flop
                             try {
                                 Q = tFlipFlop.inputT(Q, sc);
-                                Q = 0;  // Reset state after operation
+                                Q = 0; // Reset state after operation
                             } catch (Exception e) {
                                 System.out.println("Error in T flip-flop operation: " + e.getMessage());
                             }
                             break;
-                        case 'E':  // Exit program
+                        case 'E': // Exit program
                             System.out.println("Thank you for using our Flip-Flop Simulator!");
                             exit = true;
                             break;

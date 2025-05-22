@@ -60,7 +60,7 @@ public class TFF {
                 // Get inputs
                 System.out.println("\nCurrent State: Q(t) = " + Q);
                 System.out.print("Enter T (0 or 1): ");
-                String tInput = sc.next().trim();
+                String tInput = sc.nextLine().trim();
                 if (tInput.isEmpty()) {
                     System.out.println("Error: Input cannot be empty");
                     continue;
@@ -100,7 +100,7 @@ public class TFF {
                 boolean validResponse = false;
                 while (!validResponse) {
                     System.out.print("\nContinue? (Y/N): ");
-                    String response = sc.next().trim().toUpperCase();
+                    String response = sc.nextLine().trim().toUpperCase();
                     if (response.isEmpty()) {
                         System.out.println("Error: Input cannot be empty");
                         continue;

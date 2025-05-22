@@ -58,7 +58,7 @@ public class DFF {
                 // Get inputs
                 System.out.println("\nCurrent State: Q(t) = " + Q);
                 System.out.print("Enter D (0 or 1): ");
-                String dInput = sc.next().trim();
+                String dInput = sc.nextLine().trim();
                 if (dInput.isEmpty()) {
                     System.out.println("Error: Input cannot be empty");
                     continue;
@@ -98,7 +98,7 @@ public class DFF {
                 boolean validResponse = false;
                 while (!validResponse) {
                     System.out.print("\nContinue? (Y/N): ");
-                    String response = sc.next().trim().toUpperCase();
+                    String response = sc.nextLine().trim().toUpperCase();
                     if (response.isEmpty()) {
                         System.out.println("Error: Input cannot be empty");
                         continue;
