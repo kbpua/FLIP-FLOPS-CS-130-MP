@@ -1,7 +1,28 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
+/**
+ * RS (Reset-Set) Flip-Flop implementation.
+ * This class simulates the behavior of an RS flip-flop, which has two inputs:
+ * - R (Reset): When high, resets the output to 0
+ * - S (Set): When high, sets the output to 1
+ * 
+ * The flip-flop has the following truth table:
+ * R S | Q(t+1)
+ * 0 0 | Q(t)    (Hold)
+ * 0 1 | 1       (Set)
+ * 1 0 | 0       (Reset)
+ * 1 1 | Invalid (Not allowed)
+ */
 public class RSFF {
+    /**
+     * Processes the RS flip-flop input and returns the next state.
+     * 
+     * @param Q Current state of the flip-flop (0 or 1)
+     * @param sc Scanner object for reading user input
+     * @return Next state of the flip-flop
+     * @throws IllegalArgumentException if invalid inputs are provided
+     */
     public int inputRS(int Q, Scanner sc) throws InterruptedException {
         if (sc == null) {
             throw new IllegalArgumentException("Scanner object cannot be null");

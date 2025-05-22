@@ -1,7 +1,28 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
+/**
+ * T (Toggle) Flip-Flop implementation.
+ * This class simulates the behavior of a T flip-flop, which has one input:
+ * - T (Toggle): When high, toggles the output state
+ * 
+ * The flip-flop has the following truth table:
+ * T | Q(t+1)
+ * 0 | Q(t)    (Hold)
+ * 1 | Q'(t)   (Toggle)
+ * 
+ * The T flip-flop is essentially a JK flip-flop with J and K inputs tied together.
+ * When T is 1, the output toggles; when T is 0, the output remains unchanged.
+ */
 public class TFF {
+    /**
+     * Processes the T flip-flop input and returns the next state.
+     * 
+     * @param Q Current state of the flip-flop (0 or 1)
+     * @param sc Scanner object for reading user input
+     * @return Next state of the flip-flop
+     * @throws IllegalArgumentException if invalid input is provided
+     */
     public int inputT(int Q, Scanner sc) throws InterruptedException {
         if (sc == null) {
             throw new IllegalArgumentException("Scanner object cannot be null");
@@ -49,7 +70,7 @@ public class TFF {
                 System.out.println("├───┬───┼───────┬───────┤");
                 System.out.println("│ T │ Q │ Q(t)  │ Q(t+1)│");
                 System.out.println("├───┼───┼───────┼───────┤");
-                System.out.printf("│ %d │ %d │   %d   │   %d   │\n", T, Q, Q, Q_next);
+                System.out.printf("│ %d │ %d │   %d   │   %d   │\n", T, Q, Q_next);
                 System.out.println("└───┴───┴───────┴───────┘");
 
                 // Store current cycle as previous for next iteration
@@ -59,19 +80,6 @@ public class TFF {
 
                 // Update state
                 Q = Q_next;
-
-                // Reset inputs after delay
-                Thread.sleep(2000);
-                T = 0;
-                System.out.println("\nInput reset to T=0");
-                // Display reset state table
-                System.out.println("┌───────┬───────────────┐");
-                System.out.println("│ Input │    Output     │");
-                System.out.println("├───┬───┼───────┬───────┤");
-                System.out.println("│ T │ Q │ Q(t)  │ Q(t+1)│");
-                System.out.println("├───┼───┼───────┼───────┤");
-                System.out.printf("│ %d │ %d │   %d   │   %d   │\n", T, Q, Q, Q_next);
-                System.out.println("└───┴───┴───────┴───────┘");
 
                 // Continue prompt
                 System.out.print("\nContinue? (Y/N): ");

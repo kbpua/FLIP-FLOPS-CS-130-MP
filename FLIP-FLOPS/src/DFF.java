@@ -1,7 +1,27 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
+/**
+ * D (Data) Flip-Flop implementation.
+ * This class simulates the behavior of a D flip-flop, which has one input:
+ * - D (Data): The value to be stored in the flip-flop
+ * 
+ * The flip-flop has the following truth table:
+ * D | Q(t+1)
+ * 0 | 0
+ * 1 | 1
+ * 
+ * The D flip-flop simply copies its input to the output on the next clock edge.
+ */
 public class DFF {
+    /**
+     * Processes the D flip-flop input and returns the next state.
+     * 
+     * @param Q Current state of the flip-flop (0 or 1)
+     * @param sc Scanner object for reading user input
+     * @return Next state of the flip-flop
+     * @throws IllegalArgumentException if invalid input is provided
+     */
     public int inputD(int Q, Scanner sc) throws InterruptedException {
         if (sc == null) {
             throw new IllegalArgumentException("Scanner object cannot be null");
@@ -59,19 +79,6 @@ public class DFF {
 
                 // Update state
                 Q = Q_next;
-
-                // Reset inputs after delay
-                Thread.sleep(2000);
-                D = 0;
-                System.out.println("\nInput reset to D=0");
-                // Display reset state table
-                System.out.println("┌───────┬───────────────┐");
-                System.out.println("│ Input │    Output     │");
-                System.out.println("├───┬───┼───────┬───────┤");
-                System.out.println("│ D │ Q │ Q(t)  │ Q(t+1)│");
-                System.out.println("├───┼───┼───────┼───────┤");
-                System.out.printf("│ %d │ %d │   %d   │   %d   │\n", D, Q, Q, Q_next);
-                System.out.println("└───┴───┴───────┴───────┘");
 
                 // Continue prompt
                 System.out.print("\nContinue? (Y/N): ");

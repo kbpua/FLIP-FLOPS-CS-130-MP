@@ -1,8 +1,32 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
+/**
+ * JK Flip-Flop implementation.
+ * This class simulates the behavior of a JK flip-flop, which has two inputs:
+ * - J (Jump): When high, sets the output to 1
+ * - K (Kill): When high, resets the output to 0
+ * 
+ * The flip-flop has the following truth table:
+ * J K | Q(t+1)
+ * 0 0 | Q(t)    (Hold)
+ * 0 1 | 0       (Reset)
+ * 1 0 | 1       (Set)
+ * 1 1 | Q'(t)   (Toggle)
+ * 
+ * The JK flip-flop is an improvement over the RS flip-flop as it allows
+ * both inputs to be 1, which results in toggling the output.
+ */
 public class JKFF {
 
+    /**
+     * Processes the JK flip-flop input and returns the next state.
+     * 
+     * @param Q Current state of the flip-flop (0 or 1)
+     * @param sc Scanner object for reading user input
+     * @return Next state of the flip-flop
+     * @throws IllegalArgumentException if invalid inputs are provided
+     */
     public int inputJK(int Q, Scanner sc) throws InterruptedException {
         if (sc == null) {
             throw new IllegalArgumentException("Scanner object cannot be null");
