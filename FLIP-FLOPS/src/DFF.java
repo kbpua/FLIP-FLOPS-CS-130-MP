@@ -22,7 +22,7 @@ public class DFF {
      * @return Next state of the flip-flop
      * @throws IllegalArgumentException if invalid input is provided
      */
-    public int inputD(int Q, Scanner sc) throws InterruptedException {
+    public int inputD(int Q, Scanner sc) {
         if (sc == null) {
             throw new IllegalArgumentException("Scanner object cannot be null");
         }
@@ -92,9 +92,6 @@ public class DFF {
             } catch (InputMismatchException e) {
                 System.out.println("Error: Please enter a valid integer (0 or 1)");
                 sc.nextLine(); // Clear the invalid input
-            } catch (InterruptedException e) {
-                System.out.println("Error: Operation was interrupted");
-                throw e;
             } catch (Exception e) {
                 System.out.println("Unexpected error occurred: " + e.getMessage());
                 sc.nextLine(); // Clear any remaining input
