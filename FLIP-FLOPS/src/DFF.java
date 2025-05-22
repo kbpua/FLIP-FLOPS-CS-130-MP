@@ -1,5 +1,7 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * D (Data) Flip-Flop implementation.
@@ -14,10 +16,23 @@ import java.util.InputMismatchException;
  * The D flip-flop simply copies its input to the output on the next clock edge.
  */
 public class DFF {
+    // Class to store iteration data
+    private static class Iteration {
+        int D;
+        int Q;
+        int Qnext;
+
+        Iteration(int D, int Q, int Qnext) {
+            this.D = D;
+            this.Q = Q;
+            this.Qnext = Qnext;
+        }
+    }
+
     /**
      * Processes the D flip-flop input and returns the next state.
      * 
-     * @param Q Current state of the flip-flop (0 or 1)
+     * @param Q  Current state of the flip-flop (0 or 1)
      * @param sc Scanner object for reading user input
      * @return Next state of the flip-flop
      * @throws IllegalArgumentException if invalid input is provided
@@ -32,9 +47,7 @@ public class DFF {
 
         boolean exit = false;
         int D = 0;
-
-        // Variables to store previous inputs and outputs
-        Integer prevD = null, prevQ = null, prevQnext = null;
+        List<Iteration> iterations = new ArrayList<>();
 
         System.out.println("\n╔══════════════════════════════╗");
         System.out.println("║          D Flip-Flop         ║");
@@ -42,52 +55,66 @@ public class DFF {
 
         do {
             try {
-                // Show previous state for reference
-                if (prevD != null && prevQ != null && prevQnext != null) {
-                    System.out.println("\nPrevious Cycle: D Flip-Flop");
-                    System.out.println("┌───────┬───────────────┐");
-                    System.out.println("│ Input │    Output     │");
-                    System.out.println("├───┬───┼───────┬───────┤");
-                    System.out.println("│ D │ Q │ Q(t)  │ Q(t+1)│");
-                    System.out.println("├───┼───┼───────┼───────┤");
-                    System.out.printf("│ %d │ %d │   %d   │   %d   │\n", prevD, prevQ, prevQ, prevQnext);
-                    System.out.println("└───┴───┴───────┴───────┘");
-                }
-
                 // Get inputs
                 System.out.println("\nCurrent State: Q(t) = " + Q);
                 System.out.print("Enter D (0 or 1): ");
-                D = getValidInput(sc);
+                String dInput = sc.next().trim();
+                if (dInput.isEmpty()) {
+                    System.out.println("Error: Input cannot be empty");
+                    continue;
+                }
+                if (dInput.length() > 1) {
+                    System.out.println("Error: Please enter only single digit (0 or 1)");
+                    continue;
+                }
+                if (dInput.charAt(0) != '0' && dInput.charAt(0) != '1') {
+                    System.out.println("Error: D must be either 0 or 1");
+                    continue;
+                }
+                D = dInput.charAt(0) - '0';
 
                 // Compute next state
                 int Q_next = D; // D flip-flop: output follows input
 
-                // Display current table
-                System.out.println("\nCurrent Cycle: D Flip-Flop");
-                System.out.println("┌───────┬───────────────┐");
-                System.out.println("│ Input │    Output     │");
-                System.out.println("├───┬───┼───────┬───────┤");
-                System.out.println("│ D │ Q │ Q(t)  │ Q(t+1)│");
-                System.out.println("├───┼───┼───────┼───────┤");
-                System.out.printf("│ %d │ %d │   %d   │   %d   │\n", D, Q, Q, Q_next);
-                System.out.println("└───┴───┴───────┴───────┘");
+                // Store iteration
+                iterations.add(new Iteration(D, Q, Q_next));
 
-                // Store current cycle as previous for next iteration
-                prevD = D;
-                prevQ = Q;
-                prevQnext = Q_next;
+                // Display all iterations in a single table
+                System.out.println("\nD Flip-Flop History:");
+                System.out.println("┌───────┬──────────────────┐");
+                System.out.println("│ Input │      Output      │");
+                System.out.println("├───────┤──────────┬───────┤");
+                System.out.println("│   D   │    Q(t)  │ Q(t+1)│");
+                System.out.println("├───────┼──────────┼───────┤");
+                for (Iteration iter : iterations) {
+                    System.out.printf("│   %d   │     %d    │   %d   │\n", iter.D, iter.Q, iter.Qnext);
+                }
+                System.out.println("└───────┴──────────┴───────┘");
 
                 // Update state
                 Q = Q_next;
 
-                // Continue prompt
-                System.out.print("\nContinue? (Y/N): ");
-                String response = sc.next().trim().toUpperCase();
-                if (response.length() != 1 || (response.charAt(0) != 'Y' && response.charAt(0) != 'N')) {
-                    System.out.println("Error: Please enter 'Y' or 'N'");
-                    continue;
+                // Continue prompt with separate loop
+                boolean validResponse = false;
+                while (!validResponse) {
+                    System.out.print("\nContinue? (Y/N): ");
+                    String response = sc.next().trim().toUpperCase();
+                    if (response.isEmpty()) {
+                        System.out.println("Error: Input cannot be empty");
+                        continue;
+                    }
+                    if (response.length() > 1) {
+                        System.out.println("Error: Please enter only 'Y' or 'N'");
+                        continue;
+                    }
+                    char responseChar = response.charAt(0);
+                    if (responseChar != 'Y' && responseChar != 'N') {
+                        System.out.println("Error: Please enter only 'Y' or 'N'");
+                        continue;
+                    }
+                    exit = (responseChar == 'N');
+                    validResponse = true;
                 }
-                exit = (response.charAt(0) == 'N');
 
             } catch (InputMismatchException e) {
                 System.out.println("Error: Please enter a valid integer (0 or 1)");
